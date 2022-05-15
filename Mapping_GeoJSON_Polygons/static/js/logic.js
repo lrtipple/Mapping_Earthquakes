@@ -100,7 +100,7 @@ attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap
   
 //Create a base layer that holds both maps.
 let baseMaps = {
-    "Streets": streets,
+    Street: streets,
     "Satellite Streets": satelliteStreets
   };
 
@@ -111,61 +111,26 @@ let map = L.map('mapid', {
     layers: [satelliteStreets]
 })
 
-let myStyle = {
-    color: "#0221cf",
-    weight: 1,
-    fillcolor: "#adaa63",
-    fillopacity: 0.8
-    
-}
-
 // Pass our map layers into our layers control and add the layers control to the map.
 L.control.layers(baseMaps).addTo(map);
 
+// Mapping_GeoJSON_Polygons
 // Accessing the Toronto neighborhoods GeoJSON URL.
 let torontoHoods = "https://raw.githubusercontent.com/lrtipple/Mapping_Earthquakes/main/torontoNeighborhoods.json";
 
-//accessing the airport data
-// let airportdata = "https://raw.githubusercontent.com/lrtipple/Mapping_Earthquakes/main/majorAirports.json"
-
-// // Grabbing our GeoJSON data.
-// d3.json(airportdata).then(function(data) {
-//     console.log(data);
-//   // Creating a GeoJSON layer with the retrieved data.
-//   L.geoJSON(data).addTo(map);
-// });
-
-// accessing the toronta direct flight routes
-// let torontoData = "https://raw.githubusercontent.com/lrtipple/Mapping_Earthquakes/main/torontoRoutes.json"
 
 // // Create a style for the lines.
-// let myStyle = {
-//     color: "#ffffa1",
-//     weight: 2
-// }
+let myStyle = {
+    color: "#ffffa1",
+    weight: 2
+}
 
 
-// Grabbing our GeoJSON data for Toronto direct flights.
-// d3.json(torontoData).then(function(data) {
-//     console.log(data);
-  // Creating a GeoJSON layer with the retrieved data.
-//   L.geoJSON(data).addTo(map);
-// creating GeoJSON layer with dark map, nonstop fligh routes, in light yellow with a weight of 2
-// L.geoJSON(data, {
-//     style: myStyle,
-//     color: "#ffffa1",
-//     weight: 2,
-//     onEachFeature: function(feature, layer) {
-//         layer.bindPopup("<h3>Airline: " + feature.properties.airline + "</h3><hr><h3> Destination:" 
-//         + feature.properties.dst + "<.h3>");
-
-//     }
-// })
-// .addTo(map);
-// grabbing geoJSON data for toronto hoods
+//grabbing geoJSON data for toronto hoods
 d3.json(torontoHoods).then(function(data) {
     console.log(data);
    L.geoJSON(data).addTo(map);
 });
+
 
 
